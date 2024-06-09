@@ -52,7 +52,7 @@ class HomePageController extends Controller
             $brand->image = asset('assets/images/'.$brand->image);
             return $brand;
         });
-        $data['category_section'] = [ $category_contents, 'all_brand_categories' => $all_brand_categories];
+        $data['category_section'] = ['content' => $category_contents, 'all_brand_categories' => $all_brand_categories];
         // category Section end 
         // Feature section here 
         $feature_header= HeaderSection::select('featured_title', 'featured_subtitle')->findOrfail(1);
