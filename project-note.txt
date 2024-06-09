@@ -1,0 +1,14 @@
+1 : auction pagination messing
+2 : pending auction e expired auction o dakhay
+3 : auction edit page short description update korle html tag ashe 
+4 : auction er bid price double value add kora jay na
+5 : auction date format use edit page you can modify in backend 
+6 : https://prnt.sc/u5zsC__OEXKq
+8 : https://prnt.sc/wF3EAKm1npHU
+9 : https://prnt.sc/OWskSoksFck8
+10 : https://prnt.sc/LQBc9Q7EJ0wq
+11 : https://prnt.sc/aDSpnB900al6
+12 : https://prnt.sc/D-bM9uj1nZkf
+13 : https://prnt.sc/XwcgJ9rGCb6r
+14 : user auction win hole transaction create hobe for get payment
+15 : menu builder check
