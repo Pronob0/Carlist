@@ -61,14 +61,15 @@ class HomePageController extends Controller
         $data['feature_section'] = ['feature_header' => $feature_header, 'featured_cars' => $featured_cars];
 
 
-        $data['vendors'] = SiteContent::where('slug', 'vendor')->first();
-        $vendorcontent = $data['vendors']->content;
+        $vendors = SiteContent::where('slug', 'vendor')->first();
+        $vendorcontent = $vendors->content;
         $vendorcontent= json_decode(json_encode($vendorcontent,true),true);
         $vendorcontent['image'] = asset("assets/images/".$vendorcontent['image']);
-        $data['vendors']->content = $vendorcontent;
+        $vendors->content = $vendorcontent;
+        $data['vendor_section'] = $vendors->content;
 
         // recent cars section here 
-        $data['recent_header']= HeaderSection::select('recentcars_title', 'recentcars_subtitle')->findOrfail(1);
+        $recent_header= HeaderSection::select('recentcars_title', 'recentcars_subtitle')->findOrfail(1);
         $type = request()->type == 'sell' ? 1 : 0;
         if($type){
             $recentcars = Car::where('status', 1)->where('type', $type)->orderBy('id', 'desc')->take(8)->get();
@@ -78,13 +79,15 @@ class HomePageController extends Controller
             $recentcars = Car::where('status', 1)->orderBy('id', 'desc')->take(8)->get();
         }
         
-        $data['recent_cars'] = CarResources::collection($recentcars);
+        $recent_cars = CarResources::collection($recentcars);
+        $data['recent_cars'] = ['recent_header' => $recent_header, 'recent_cars' => $recent_cars];
 
         // recent cars end 
 
         // blogs section here
-        $data['blog_header']= HeaderSection::select('blog_title', 'blog_subtitle')->findOrfail(1);
-        $data['blogs'] = Blog::where('status', 1)->orderBy('id', 'desc')->take(3)->get();
+        $blog_header= HeaderSection::select('blog_title', 'blog_subtitle')->findOrfail(1);
+        $blogs = Blog::where('status', 1)->orderBy('id', 'desc')->take(3)->get();
+        $data['blog_section'] = ['blog_header' => $blog_header, 'blogs' => $blogs];
 
         return response()->json(['status' => true, 'data' => $data, 'error' => []]);
         
