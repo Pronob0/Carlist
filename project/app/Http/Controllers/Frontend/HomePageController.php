@@ -24,6 +24,17 @@ class HomePageController extends Controller
 {
     public function heroSection()
     {
+        $data['hero_contents'] = SiteContent::where('slug', 'hero')->select('content','status')->first();
+        $oldcontent = $data['hero_contents']->content;
+        $oldcontent= json_decode(json_encode($oldcontent,true),true);
+        $oldcontent['background'] = asset("assets/images/".$oldcontent['background']);
+        $oldcontent['image'] = asset("assets/images/".$oldcontent['image']);
+        $data['hero_contents']->content = $oldcontent;
+        return response()->json(['status' => true, 'data' => $data, 'error' => []]);
+
+    }
+    public function homeSection()
+    {
         // api response will be here
         $hero_contents = SiteContent::where('slug', 'hero')->select('content','status')->first();
         $oldcontent = $hero_contents->content;
@@ -227,9 +238,10 @@ class HomePageController extends Controller
         return response()->json(['status' => true, 'data' => $data, 'error' => []]);
     }
 
-    public function generalSettings(){
+    public function generalSetting(){
         // expect menu 
-        $data['settings'] = Generalsetting::first()->except('menu');
+        
+        $data['settings'] = Generalsetting::first();
         return response()->json(['status' => true, 'data' => $data, 'error' => []]);
     }
 

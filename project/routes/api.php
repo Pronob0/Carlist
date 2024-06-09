@@ -27,7 +27,8 @@ Route::middleware(['maintenance'])->group(function () {
     Route::get('/all/generalsetting', [HomePageController::class, 'generalSetting'])->name('front.generalSetting');
 
 
-    Route::get('/front/home', [HomePageController::class, 'heroSection'])->name('front.hero');
+    Route::get('/front/home', [HomePageController::class, 'homeSection'])->name('front.home');
+    Route::get('/front/hero', [HomePageController::class, 'heroSection'])->name('front.hero');
     Route::get('/front/category-section', [HomePageController::class, 'categorySection'])->name('front.categories');
     Route::get('/front/about-section', [HomePageController::class, 'aboutSection'])->name('front.about');
     Route::get('/front/featured-cars', [HomePageController::class, 'featuredCars'])->name('front.featuredCars');
