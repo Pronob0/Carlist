@@ -206,8 +206,8 @@ class HomePageController extends Controller
     }
 
     public function footer(){
-        $data['footer'] = Generalsetting::select('footer_text','header_logo')->first();
-        $data['footer']->header_logo = asset('assets/images/'.$data['footer']->header_logo);
+        $data['footer'] = Generalsetting::select('footer_text','footer_logo')->first();
+        $data['footer']->footer_logo = asset('assets/images/'.$data['footer']->footer_logo);
         $contact_info = SiteContent::where('slug', 'contact')->select('content')->first();
         $data['phone'] = json_decode($contact_info->content->phone) ;
         $data['email'] = json_decode($contact_info->content->email) ;
