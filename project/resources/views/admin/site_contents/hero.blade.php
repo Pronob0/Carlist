@@ -33,8 +33,8 @@
                                 </div>
                                 <div class="custom-file">
                                     <input type="file" name="image"  class="custom-file-input imageUpload mb-2" id="customFile">
-                                    <code class="text-danger">@lang('Image size : 395 px x 395 px')</code>
-                                    <input type="hidden" name="image_size" value="395x395">
+                                    <code class="text-danger">@lang('Image size : 812 px x 513 px')</code>
+                                    <input type="hidden" name="image_size" value="812x513">
                                     <label class="custom-file-label" for="customFile">@lang('Choose file')</label>
                                 </div>
                             </div>
