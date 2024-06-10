@@ -76,8 +76,11 @@ class HomePageController extends Controller
         $vendorcontent = $vendors->content;
         $vendorcontent= json_decode(json_encode($vendorcontent,true),true);
         $vendorcontent['image'] = asset("assets/images/".$vendorcontent['image']);
+        // add status 
         $vendors->content = $vendorcontent;
-        $data['vendor_section'] = $vendors->content;
+        $vendors->status = $vendors->status;
+
+        $data['vendor_section'] = ['content' => $vendors->content, 'status' => $vendors->status];
 
         // recent cars section here 
         $recent_header= HeaderSection::select('recentcars_title', 'recentcars_subtitle')->findOrfail(1);
@@ -92,9 +95,6 @@ class HomePageController extends Controller
         
         $recent_cars = CarResources::collection($recentcars);
         $data['recent_cars'] = ['recent_header' => $recent_header, 'recent_cars' => $recent_cars];
-
-        // recent cars end 
-
         // blogs section here
         $blog_header= HeaderSection::select('blog_title', 'blog_subtitle')->findOrfail(1);
         $blogs = Blog::where('status', 1)->orderBy('id', 'desc')->take(3)->get();
