@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Package;
+use App\Models\UserPackages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -70,6 +71,11 @@ class PackageController extends Controller
         $package->delete();
 
         return redirect()->route('admin.package.index')->with('success', 'Package deleted successfully.');
+    }
+
+    public function userPackage(){
+        $userPackages = UserPackages::orderBy('id', 'desc')->paginate(15);
+        return view('admin.user_packages.index', compact('userPackages'));
     }
 
 
